@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthForm from './AuthForm';
 import { graphql } from 'react-apollo';
+import { hashHistory } from 'react-router';
 
 import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
@@ -24,6 +25,17 @@ class LoginForm extends Component {
         });
     }
 
+    componentWillUpdate(nextProps) {
+        console.log('from login component: ', this.props, nextProps );
+        /* Redirect the user to dashboard based on the this.props and nextProps
+            Trigger condition: User is successfully authenticated
+        */
+        if (!this.props.data.user && nextProps.data.user) {
+            // Forceful redirect to dashboard
+            hashHistory.push('/dashboard');
+        }
+    }
+
     render() {
         return(
             <div>
@@ -34,4 +46,6 @@ class LoginForm extends Component {
     }
 };
 
-export default graphql(mutation) (LoginForm);
+export default graphql(query) (
+    graphql(mutation) (LoginForm)
+);
