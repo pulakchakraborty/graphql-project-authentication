@@ -6,6 +6,12 @@ class AuthForm extends Component {
         this.state = { email: '', password: '' };
     }
 
+    onButtonClick = (event) => {
+        event.preventDefault();
+        const { email, password } = this.state;
+        this.props.onLogin({ email, password });
+    }
+
     render() {
         return(
             <div className="row">
@@ -24,7 +30,7 @@ class AuthForm extends Component {
                             onChange={e => this.setState({ password: e.target.value })}
                         />
                     </div>
-                    <button className="btn">Submit</button>
+                    <button onClick={this.onButtonClick} className="btn">Submit</button>
                 </form>
             </div>
         );
