@@ -28,7 +28,7 @@ class LoginForm extends Component {
         return(
             <div>
                 <h4>Login</h4>
-                <AuthForm errors={this.state.errors} onLogin={this.onLogin} />
+                <AuthForm errors={this.state.errors} onFormSubmit={this.onLogin} />
             </div>
         );
     }
