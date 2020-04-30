@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { graphql } from 'react-apollo';
-import { hashHistory } from 'react-router';
 
 import query from '../queries/CurrentUser';
 
 export default (WrappedComponent) => {
     const requireAuth = (props) => {
-        if (props.data.user) {
+        const { data: { loading, user } } = props;
+        if (!loading && !user) {
             return(
-                <WrappedComponent {...this.props} />
+                <div>You must login to view this page</div>
             );
         }
-        return (
-            <div>
-              Please log in to see this page.
-            </div>
+        return(
+            <WrappedComponent {...props} />
         );
     }
 
