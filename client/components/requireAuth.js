@@ -5,20 +5,17 @@ import { hashHistory } from 'react-router';
 import query from '../queries/CurrentUser';
 
 export default (WrappedComponent) => {
-    class requireAuth extends Component {
-        componentWillUpdate(nextProps) {
-            // If the query has finished loading and if user is logged in
-            if (!nextProps.data.loading && !nextProps.data.user) {
-                // redirect the user forcefully to login screen
-                hashHistory.push('/login');
-            }
-        }
-
-        render() {
+    const requireAuth = (props) => {
+        if (props.data.user) {
             return(
                 <WrappedComponent {...this.props} />
             );
         }
+        return (
+            <div>
+              Please log in to see this page.
+            </div>
+        );
     }
 
     return graphql(query) (requireAuth);
