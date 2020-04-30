@@ -8,10 +8,10 @@ class AuthForm extends Component {
         this.state = { email: '', password: '' };
     }
 
-    onButtonClick = (event) => {
+    onFormSubmit = (event) => {
         event.preventDefault();
         const { email, password } = this.state;
-        this.props.onLogin({ email, password });
+        this.props.onFormSubmit({ email, password });
     }
 
     render() {
@@ -37,7 +37,7 @@ class AuthForm extends Component {
                     <div className="errors">
                         {this.props.errors.map(error => <div key={error}>{error}</div>)}
                     </div>
-                    <button onClick={this.onButtonClick} className="btn">Submit</button>
+                    <button onClick={this.onFormSubmit} className="btn">Submit</button>
                 </form>
             </div>
         );
