@@ -3,6 +3,7 @@ import AuthForm from './AuthForm';
 import { graphql } from 'react-apollo';
 
 import mutation from '../mutations/Login';
+import query from '../queries/CurrentUser';
 
 class LoginForm extends Component {
     onLogin = ({ email, password }) => {
@@ -10,7 +11,8 @@ class LoginForm extends Component {
             variables: {
                 email: email,
                 password: password
-            }
+            },
+            refetchQueries: [{ query }]
         });
     }
 
