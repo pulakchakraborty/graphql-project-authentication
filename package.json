@@ -22,7 +22,7 @@
     "apollo-link-http": "^1.5.16",
     "axios": "^0.19.2",
     "babel-loader": "^8.1.0",
-    "bcrypt": "^3.0.8",
+    "bcrypt": "^5.0.0",
     "bcrypt-nodejs": "0.0.3",
     "connect-mongo": "^3.2.0",
     "css-loader": "^3.4.2",
